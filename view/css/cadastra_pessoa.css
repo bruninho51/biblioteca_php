@@ -1,0 +1,7 @@
+input, button, select{
+	margin: 5px;
+}
+
+input{
+	width: 100%;
+}

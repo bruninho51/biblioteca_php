@@ -1,0 +1,102 @@
+.btnplus{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.container_add_editora, .container_add_editora, .container_add_pessoa, .container_add_tipo_material{
+    position: relative;
+}
+
+.add_editora, .add_autor, .add_pessoa, .add_tipo_material{
+    width: 250px;
+    height: 200px;
+    border: 1px solid #000;
+    background-color: #fff;
+    position: absolute;
+    top: 40px;
+    border-radius: 50px 0px 0px 0px;
+    display: none;
+    padding-top: 40px;
+    
+}
+.add_pessoa{
+    height: 240px;
+}
+.add_editora p, .add_autor p, .add_pessoa p, .add_tipo_material p{
+    padding-left: 40px;
+}
+.add_editora ul, .add_autor ul, .add_pessoa ul, .add_tipo_material ul{
+    list-style: none;
+}
+
+.add_editora input, select{
+    width: 30px;
+}
+.add_autor input, select{
+    width: 100px;
+}
+.add_pessoa input, select{
+    width: 100px;
+}
+.add_tipo_material input, select{
+    width: 100px;
+}
+
+.add_editora select{
+    width: 126px;
+}
+
+#sec-abstract-informacional, #sec-material-especial, #sec-livro, #sec-periodico{
+	border: 1px solid black;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	padding: 10px;	
+}
+#form-material-especial, #form-periodico{
+	display: none;
+}
+
+input, button, select{
+	margin: 5px;
+}
+
+#editora{
+	margin: 0 auto;
+}
+
+#autores-todos-livro, #autores-livro{
+	min-height: 100px;
+}
+
+input[type="number"]{
+	width: 60px;
+}
+
+.autor{
+	background-color: #C0C0C0;
+	border-radius: 0px 100px 100px 0px;
+	padding: 5px;
+	padding-right: 30px;
+	font-size: 0.9em;
+	margin: 5px;
+	float: left;
+	cursor: pointer;
+}
+
+fieldset{
+	border-radius: 10px;
+	margin: 5px;
+}
+
+input{
+	width: 100%;
+}
+input[type=number]{
+	width: 100%;
+}
+select{
+	width: 100%;
+}
+
+.add_editora input{
+	width: 100px;
+}

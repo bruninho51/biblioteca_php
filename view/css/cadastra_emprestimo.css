@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+}
+.container-tabela{
+    height: 200px;
+    overflow: scroll;
+}
+.emprestimo-livro{
+    background-color: coral;
+}
+.emprestimo-periodico{
+    background-color: chartreuse;
+}
+.emprestimo-material-especial{
+    background-color: darkviolet;
+}
+#tabela_livros tr{
+   background-color: coral;
+}
+#tabela_periodicos tr{
+    background-color: chartreuse;
+}
+#tabela_materiais_especiais tr{
+    background-color: darkviolet;
+}
+.container-medio{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_emprestimos{
+    background-color: white;
+    display: block;
+    width: 65%;
+    padding: 8px;
+}
+aside{
+    background-color: white;
+    width: 35%;
+}
+aside ul{
+    list-style: none;
+}
+
+.pesquisa{
+    display: flex;
+}
+.pesquisa button{
+    width: 5px;
+    cursor: pointer;
+}
+table{
+    border: 1px solid #000;
+    width: 100%;
+}
+table td{
+    cursor: pointer;
+}
+.item_emprestimo{
+    padding: 5px;
+    border-radius: 12px;
+    height: 60px;
+    margin-bottom: 8px;
+}
+.item_emprestimo p{
+    font-size: 16px;
+    margin: 0;
+}
+.cabecario_lista{
+    display: flex;
+    justify-content: space-between;
+}
+.exclui_item img{
+    width: 24px;
+    float: right;
+    padding-top: 5px;
+    cursor: pointer;
+}

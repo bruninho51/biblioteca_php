@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body{
+	background-color: #96A5AA;
+	font-family: 'Oswald', sans-serif;
+}
+.cabecario{
+	display: flex;
+	justify-content: space-between;
+}
+.titulo-site{
+	display: table;
+}
+.container{
+	width: 70%;
+	margin: 0 auto;
+}
+.logo{
+	display: table-cell;
+}
+.cabecario h1{
+	vertical-align: middle;
+	display: table-cell;
+}
+.voltar{
+	float: right;
+	cursor: pointer;
+}
+
+.container-formulario{
+	background-color: white;
+	padding: 50px;
+	border-radius: 20px 20px;
+}
+.container-formulario button{
+	font-size: 25px;
+}
+
+/*ESTILOS DA TABELA PADRÃO DO SISTEMA*/
+.tabela-biblioteca{
+	padding: 5px;
+	margin: 0 auto;
+	width: 100%;
+	background-color: #32485F;
+	border: 5px solid #000;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 5px 5px;
+}
+.tabela-biblioteca th{
+	background-color: #F0C40D;
+	border: 1px solid #000;
+}
+.tabela-biblioteca tr{
+	padding: 5px;
+}
+.tabela-biblioteca td{
+	padding: 5px;
+	background-color: #808B8D;
+}
+.flex-outer li{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.flex-outer ul{
+	list-style: none;
+}
+
+.flex-outer > li > label{
+  flex: 1 0 120px;
+  max-width: 220px;
+}
+ 
+.flex-outer > li > label + *{
+  flex: 1 0 220px;
+}
+
+.erro{
+	background-color: rgba(255,0,0,0.6);
+	width: 100%;
+	height: 25px;
+	text-align: center;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+.mini-menu{
+    width: 100%;
+    height: 40px;
+    background-color: dimgrey;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.mini-menu img{
+    padding: 6px;
+    width: 28px;
+}

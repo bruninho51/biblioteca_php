@@ -1,0 +1,20 @@
+.itens{
+	display: flex;	
+	clear:both;
+}
+.btn{
+	width: 200px;
+	height: 400px;
+	background-color: #4798DA;
+	padding: 10px;
+	display: flex;
+	margin: 5px;
+	color: white;
+	font-weight: bold;
+	box-shadow: 5px 5px #000;
+	cursor: pointer;
+	border: 0px;
+}
+.btn:hover{
+	background-color: #3A7FBA;
+}
