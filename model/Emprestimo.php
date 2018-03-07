@@ -7,6 +7,11 @@
 	require_once('../helper/helper.php');
 
 	class Emprestimo{
+        /*
+        *RECEBE O CODIGO DO EMPRÉSTIMO QUE SERÁ GERADO PELO PHP
+        @access protected 
+        @name $codigo_emprestimo
+        */
         protected $codigo_emprestimo;
         
         /*
@@ -118,6 +123,7 @@
 		}
         
         function gerarCodigoEmprestimo($id_pessoa){
+            //GERA O PREFIXO USANDO O ID DA PESSOA E UM VALOR RANDOMICO
             $prefix = $id_pessoa + rand(10,100);
             
             return uniqid($prefix, false);
@@ -126,27 +132,27 @@
         function gravar(){
             //GERANDO CÓDIGO DO EMPRÉSTIMO
             $codigo = self::gerarCodigoEmprestimo($this->pessoa->id);
+            
             $id_pessoa = $this->pessoa->id;
             $data = date('Y-m-d');
             $data_devolucao = date('Y-m-d', strtotime($data. ' + 15 days'));
+            
             //ESTABELECENDO CONEXÃO
 			$conexao = DAO::conexaoMySQLi();
 			
+            //FOREACH QUE PERCORRERÁ MATERIAIS E CRIARÁ REGISTROS NAS TABELAS DE EMPRÉSTIMO RELATIVAS A ELES
             foreach($this->materiais as $material){
                 switch (get_class($material)){
                     case 'Livro':
                         $sql = "CALL add_emprestimo_livro('$codigo', '$material->isbn', $id_pessoa, '$data_devolucao', @disponivel)";
-                        echo $sql . '<br>';
                     break;
                         
                     case 'Periodico':
                         $sql = "CALL add_emprestimo_periodico('$codigo', '$material->issn', $id_pessoa, '$data_devolucao', @disponivel)";
-                        echo $sql . '<br>';
                     break;
                         
                     case 'MaterialEspecial':
                         $sql = "CALL add_emprestimo_material_especial('$codigo', '$material->id', $id_pessoa, '$data_devolucao', @disponivel)";
-                        echo $sql . '<br>';
                     break;
                 }
                 

@@ -1,4 +1,8 @@
 <?php
+    /* @autor BRUNO MENDES PIMENTA
+     * CLASSE RESPONSÁVEL POR FUNÇÕES DE AJUDA DO LADO DO SERVIDOR
+     */
+
 	function validarData($dat){
 		$data = explode("-", $dat); // fatia a string $dat em pedados, usando / como referência
 		$d = $data[2];

@@ -95,13 +95,15 @@
         
 	}
 
-
 	function gravarEmprestimo($post, &$erro, &$gravado){
+        //CRIA OBJETO DE EMPRÉSTIMO
         $emprestimo = new Emprestimo();
         $p = new Pessoa();
         $p->id = (int) $post['id_pessoa'];
         $emprestimo->pessoa = $p;
         $emprestimo->dataDevolucao = $post['data_devolucao'];
+        
+        //FOREACH QUE SERÁ RESPONSÁVEL POR CRIAR OBJETO DOS MATERIAIS E COLOCA-LOS EM $emprestimo
         foreach($post['item_emprestimo'] as $item){
             $arr_item = explode('.', $item);
             switch ($arr_item[0]){
@@ -125,6 +127,7 @@
             }
         }
         
+        //GRAVA O EMPRÉSTIMO NO BANCO DE DADOS
         if($emprestimo->gravar()){
             $gravado = true;
             return true;
