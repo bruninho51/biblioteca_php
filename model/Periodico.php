@@ -185,6 +185,18 @@
 			}
 			return $periodicos;
 		}
+        
+        static function existePeriodico($codigo){
+            $sql = "SELECT * FROM periodico WHERE issn = '" . $codigo . "'";
+            $conexao = DAO::conexaoMySQLi();
+            $conexao->query($sql);
+            if($conexao->affected_rows > 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
 
 	}
 

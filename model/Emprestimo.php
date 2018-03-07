@@ -4,9 +4,11 @@
      * DAS TABELAS DE EMPRÉSTIMO
      */
 
-	require_once('helper/helper.php');
+	require_once('../helper/helper.php');
 
 	class Emprestimo{
+        protected $codigo_emprestimo;
+        
         /*
         *RECEBE O ID DO EMPRÉSTIMO
         @access protected 
@@ -18,13 +20,13 @@
         @access protected
         @name $pessoa
         */
-		protected $pessoa = new Pessoa();
+		protected $pessoa;
         /*
         *RECEBE O MATERIAL QUE ESTÁ SENDO EMPRESTADO
         @access protected
         @name $material
         */
-		protected $material = new AbstractInformacional();
+		protected $materiais;
         /*
         *RECEBE A DATA DO EMPRÉSTIMO
         @access protected
@@ -42,7 +44,13 @@
         @access protected
         @name $devolvido
         */
-		protected $devolvido = false;
+		protected $devolvido;
+        
+        function __construct(){
+            $this->devolvido = false;
+            $this->materiais = array();
+            $this->pessoa = new Pessoa();
+        }
 
 
 		public function __get($property){
@@ -63,18 +71,18 @@
 					break;
 					
 					case 'pessoa':
-						if(gettype($value) == "objetct" && get_class($value) == "Pessoa"){
+						if(gettype($value) == "object" && get_class($value) == "Pessoa"){
 		   					$this->$property = $value;
 		   				}else{
 		   					throw new Exception("Erro: pessoa deve receber um objeto da classe Pessoa.");
 		   				}
 					break;
 					
-					case 'material':
-						if(gettype($value) == "objetct" && get_parent_class($value) == "AbstractInformacional"){
-		   					$this->$property = $value;
+					case 'materiais':
+						if(get_parent_class($value) == "AbstractInformacional"){
+		   					$this->$property[] = $value;
 		   				}else{
-		   					throw new Exception("Erro: material deve receber um Livro, Periodico ou MaterialEspecial.");
+		   					throw new Exception("Erro: material deve receber um material.");
 		   				}
 					break;
 					
@@ -103,11 +111,58 @@
 					break;
 					
 					default:
-						return throw new Exception("Erro: a propriedade $value não existe.");
+						throw new Exception("Erro: a propriedade $propery não existe.");
 					break;
 				}
 			}
 		}
+        
+        function gerarCodigoEmprestimo($id_pessoa){
+            $prefix = $id_pessoa + rand(10,100);
+            
+            return uniqid($prefix, false);
+        }
+        
+        function gravar(){
+            //GERANDO CÓDIGO DO EMPRÉSTIMO
+            $codigo = self::gerarCodigoEmprestimo($this->pessoa->id);
+            $id_pessoa = $this->pessoa->id;
+            $data = date('Y-m-d');
+            $data_devolucao = date('Y-m-d', strtotime($data. ' + 15 days'));
+            //ESTABELECENDO CONEXÃO
+			$conexao = DAO::conexaoMySQLi();
+			
+            foreach($this->materiais as $material){
+                switch (get_class($material)){
+                    case 'Livro':
+                        $sql = "CALL add_emprestimo_livro('$codigo', '$material->isbn', $id_pessoa, '$data_devolucao', @disponivel)";
+                        echo $sql . '<br>';
+                    break;
+                        
+                    case 'Periodico':
+                        $sql = "CALL add_emprestimo_periodico('$codigo', '$material->issn', $id_pessoa, '$data_devolucao', @disponivel)";
+                        echo $sql . '<br>';
+                    break;
+                        
+                    case 'MaterialEspecial':
+                        $sql = "CALL add_emprestimo_material_especial('$codigo', '$material->id', $id_pessoa, '$data_devolucao', @disponivel)";
+                        echo $sql . '<br>';
+                    break;
+                }
+                
+                $conexao->query($sql);
+                $res = $conexao->query('SELECT @disponivel');
+                $res = $res->fetch_array();
+                
+                if($res[0] == false){
+                    $erro = 'Material não disponível para emprestimo!';
+                    return false;
+                }
+            }
+            
+            return true;
+            
+        }
 
 		
 	}

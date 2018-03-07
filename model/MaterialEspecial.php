@@ -161,6 +161,18 @@
 			}
 			return $materiais_especiais;
 		}
+        
+        static function existeMaterialEspecial($codigo){
+            $sql = "SELECT * FROM materialespecial WHERE id_material_especial = '" . $codigo . "'";
+            $conexao = DAO::conexaoMySQLi();
+            $conexao->query($sql);
+            if($conexao->affected_rows > 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
 	}
 
 ?>

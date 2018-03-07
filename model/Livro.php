@@ -291,6 +291,18 @@
 			return $livros;
 		}
         
+        static function existeLivro($codigo){
+            $sql = "SELECT * FROM livro WHERE isbn = '" . $codigo . "'";
+            $conexao = DAO::conexaoMySQLi();
+            $conexao->query($sql);
+            if($conexao->affected_rows > 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+        
 	}
 
 ?>

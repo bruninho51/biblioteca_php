@@ -158,5 +158,17 @@
 			}
 			return $pessoas;
 		}
+        
+        static function existePessoa($codigo){
+            $sql = "SELECT * FROM pessoa WHERE id = '" . $codigo . "'";
+            $conexao = DAO::conexaoMySQLi();
+            $conexao->query($sql);
+            if($conexao->affected_rows > 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
 	}
 ?>

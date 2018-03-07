@@ -52,14 +52,15 @@ function selecionarMaterialEmprestimo(item_lista, tipo_material) {
     var disponiveis = item_lista.children[2].value;
     
     if (tipo_material == 'livro') {
-        $('.items_emprestimo').append('<div class="item_emprestimo emprestimo-livro" id="' + codigo + '"><input type="hidden" name="item_emprestimo[]" value="'+ titulo +'"><input type="hidden" name="tipo_item_emprestimo[]" value="' + codigo + '"><span class="cabecario_lista"><p>' + titulo + '</p><p>isbn: ' + codigo + '</p></span><span class="exclui_item"><img src="../view/img/x.png" onclick="remMaterialEmprestimo(' + codigo + ')"></span></div>');   
+        $('.items_emprestimo').append('<div class="item_emprestimo emprestimo-livro" id="' + codigo + '"><input type="hidden" name="item_emprestimo[]" value="isbn.'+ codigo +'"><span class="cabecario_lista"><p>' + titulo + '</p><p>isbn: ' + codigo + '</p></span><span class="exclui_item"><img src="../view/img/x.png" onclick="remMaterialEmprestimo(' + codigo + ')"></span></div>');   
     }
     if (tipo_material == 'periodico') {
-        $('.items_emprestimo').append('<div class="item_emprestimo emprestimo-periodico" id="' + codigo + '"><input type="hidden" name="item_emprestimo[]" value="'+ titulo +'"><input type="hidden" name="tipo_item_emprestimo[]" value="' + codigo + '"><span class="cabecario_lista"><p>' + titulo + '</p><p>issn: ' + codigo + '</p></span><span class="exclui_item"><img src="../view/img/x.png" onclick="remMaterialEmprestimo(' + codigo + ')"></span></div>');
+        $('.items_emprestimo').append('<div class="item_emprestimo emprestimo-periodico" id="' + codigo + '"><input type="hidden" name="item_emprestimo[]" value="issn.'+ codigo +'"><span class="cabecario_lista"><p>' + titulo + '</p><p>issn: ' + codigo + '</p></span><span class="exclui_item"><img src="../view/img/x.png" onclick="remMaterialEmprestimo(' + codigo + ')"></span></div>');
     }
     
     if (tipo_material == 'material-especial') {
-        $('.items_emprestimo').append('<div class="item_emprestimo emprestimo-material-especial" id="' + codigo + '"><input type="hidden" name="item_emprestimo[]" value="'+ titulo +'"><input type="hidden" name="tipo_item_emprestimo[]" value="' + codigo + '"><span class="cabecario_lista"><p>' + titulo + '</p><p>identificador: ' + codigo + '</p></span><span class="exclui_item"><img src="../view/img/x.png" onclick="remMaterialEmprestimo(' + codigo + ')"></span></div>');
+        $('.items_emprestimo').append('<div class="item_emprestimo emprestimo-material-especial" id="' + codigo + '"><input type="hidden" name="item_emprestimo[]" value="id.'+ codigo +'"><span class="cabecario_lista"><p>' + titulo + '</p><p>identificador: ' + codigo + '</p></span><span class="exclui_item"><img src="../view/img/x.png" onclick="remMaterialEmprestimo(' + codigo + ')"></span></div>');
+        alert($.get());
     }
     
     
@@ -69,4 +70,3 @@ function selecionarMaterialEmprestimo(item_lista, tipo_material) {
 function remMaterialEmprestimo(variavel) {
     $('.item_emprestimo[id="' + variavel + '"]').remove();
 }
-

@@ -73,34 +73,24 @@
             <div class="container-medio">
                 <div class="container_emprestimos">
                     
-                    <form action="../teste.php" method="post" id="form-emprestimo" name="form_emprestimo">
+                    <form action="../controller/cadastrar_emprestimo.php" method="post" id="form-emprestimo" name="form_emprestimo">
+                        <label for="seleciona_pessoa">Pessoa:</label>
+                        <select name="id_pessoa" id="seleciona_pessoa">
+                            <?php foreach($pessoas as $pessoa): ?>
+                                <option value="<?php echo $pessoa->id?>"><?php echo $pessoa->nome?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <label for="data_devolucao">Devolução:</label>
+                        <input name="data_devolucao" id="data_devolucao" type="date" value="<?php echo date('Y-m-d', strtotime('+15 days'));?>" disabled>
+                        
                         <h1>Lista de Empréstimo:</h1>
                         <div class="items_emprestimo">
                             <!--AQUI O JS COLOCARÁ OS MATERIAIS A SEREM EMPRESTADOS-->
                         </div>
-                        
-                        
-                        <button id="btn-salvar-emprestimo" type="submit">Salvar</button>
-                </div>
-               
                 
-                <aside>
-                    <ul>
-                        <li><label for="seleciona_pessoa">Pessoa:</label></li>
-                        <li>
-                            <select id="seleciona_pessoa">
-                                <?php foreach($pessoas as $pessoa): ?>
-                                    <option value="<?php echo $pessoa->id?>"><?php echo $pessoa->nome?></option>
-                                <?php endforeach;?>
-                                
-                            </select>
-                        </li>
-                        <li><label for="data_devolucao">Devolução:</label></li>
-                        <li><input type="date"></li>
-                    </ul>
-                    
-                </aside>
-                </form>
+                        <button id="btn-salvar-emprestimo" type="submit">Salvar</button>
+                    </form>
+                </div>
             </div>
     
         </div>
